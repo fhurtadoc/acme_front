@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  siteUrl: 'http://localhost:2500/index.php',
+  siteUrl: 'http://localhost:2000/index.php',
 };
 
 /*

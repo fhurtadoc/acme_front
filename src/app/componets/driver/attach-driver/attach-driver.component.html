@@ -1,1 +1,23 @@
 
+<h2>Asignacion de Vehiculos</h2>
+<form class="form_asing">
+    <mat-form-field appearance="fill">
+        <mat-label>Carros sin Conductor:</mat-label> 
+        <mat-select name="carros sin conductor" [(ngModel)]="id_car" >
+            <mat-option *ngFor="let car of listcarsOutdriver" [value]="car.id" >{{car.license}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    
+    <mat-form-field appearance="fill">
+        <mat-label>Conductores sin carro:</mat-label> 
+        <mat-select name="carros sin conductor" [(ngModel)]="id_user" >
+            <mat-option *ngFor="let car of listdriverOutcar"  [value]="car.id" >{{car.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+    <button mat-button color="primary" (click)="createAsoc()">Asignar</button>
+    
+</form>
+
+
+

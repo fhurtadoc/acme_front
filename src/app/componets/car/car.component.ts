@@ -35,22 +35,7 @@ export class CarComponent implements OnInit {
 
   CrearVehiculo(){
     this.createOwner();
-    if(this.id_Owner!='0'){
-      var formOwner=new FormData()
-      formOwner.append("license", this.formCar.value.license);    
-      formOwner.append("brand", this.formCar.value.brand);    
-      formOwner.append("type_car", this.formCar.value.type_car);    
-      formOwner.append("owner", this.id_Owner);          
-      var path='?action=create_car';      
-      this.servicesService.consultas_post(path, formOwner).subscribe(
-        res=>{
-          console.log(res);
-        },
-        err=>{
-          console.log(err);
-        }
-      )
-    }
+    
   }
 
   createOwner(){
@@ -67,13 +52,32 @@ export class CarComponent implements OnInit {
       res=>{
           console.log(res);          
           if(res.http===200){            
-            this.id_Owner=res.id;
-            console.log(this.id_Owner);            
+            res.id;
+            this.create_car(res.id);
           }
       },
       err=>{
         console.log(err);
       }
     )
+  }
+
+  create_car(id){
+    if(id!=0){
+      var formOwner=new FormData()
+      formOwner.append("license", this.formCar.value.license);    
+      formOwner.append("brand", this.formCar.value.brand);    
+      formOwner.append("type_car", this.formCar.value.type_car);    
+      formOwner.append("owner", id);          
+      var path='?action=create_car';      
+      this.servicesService.consultas_post(path, formOwner).subscribe(
+        res=>{
+          console.log(res);
+        },
+        err=>{
+          console.log(err);
+        }
+      )
+    }
   }
 }
