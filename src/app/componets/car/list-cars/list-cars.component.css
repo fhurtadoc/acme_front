@@ -1,0 +1,15 @@
+h2{
+    text-align: center;
+    margin-top: 2%;
+}
+
+.continer_tab{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-top: 5%;
+}
+
+.continer_tab table{
+    width: 80%;
+}

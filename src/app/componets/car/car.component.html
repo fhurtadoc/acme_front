@@ -1,0 +1,52 @@
+<app-progress>
+    <app-progress-step>
+        <div class="container" [formGroup]="formOwner">
+            <h2>Informacion del Propietario</h2> 
+            <p>Antes de crear el vehiculo necesitamos saber los datos del propietario</p>           
+            <mat-form-field>                
+                <input 
+                matInput placeholder="Cedula" 
+                formControlName="id_card"                 >
+            </mat-form-field>            
+            <mat-form-field>                
+                <input matInput placeholder="Nombre" formControlName="name" >
+            </mat-form-field>                        
+            <mat-form-field>                
+                <input matInput placeholder="Segundo Nombre" formControlName="second_name" >
+            </mat-form-field>                        
+            <mat-form-field>                
+                <input matInput placeholder="Apellidos" formControlName="last_name">
+            </mat-form-field>                        
+            <mat-form-field>                
+                <input matInput placeholder="Direccion" formControlName="address" >
+            </mat-form-field>                        
+            <mat-form-field>                
+                <input matInput placeholder="Telefono" formControlName="phone">
+            </mat-form-field>                        
+            <mat-form-field>                
+                <input matInput placeholder="Ciudad" formControlName="city">
+            </mat-form-field>
+            <br><button mat-button color="primary" progressStepNext [disabled]="formOwner.invalid">Siguiente Paso</button>                    
+        </div>
+
+    </app-progress-step>
+    <app-progress-step>
+        <div class="container" [formGroup]="formCar">
+            <h2>Informacion del Vehiculo</h2>            
+            <mat-form-field>                
+                <input matInput placeholder="Placa" formControlName="license">
+            </mat-form-field>            
+            <mat-form-field>                
+                <input matInput placeholder="Marca" formControlName="brand">
+            </mat-form-field>            
+            <mat-form-field>             
+                <mat-select formControlName="type_car" >
+                    <mat-option value="1">Publico</mat-option>                
+                    <mat-option value="2">Privado</mat-option>                
+                </mat-select>
+            </mat-form-field>
+            <br><button mat-button color="primary" progressStepNext (click)="CrearVehiculo()">Crear</button>        
+            <button mat-button color="accent" progressStepPrev >Volver</button>                                
+        </div>
+    </app-progress-step>    
+</app-progress>

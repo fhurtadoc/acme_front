@@ -1,0 +1,27 @@
+<div class="containerform_driver" [formGroup]="formDriver">
+    <h2>Informacion del Conductor</h2>     
+    <mat-form-field>                
+        <input 
+        matInput placeholder="Cedula" 
+        formControlName="id_card"                 >
+    </mat-form-field>            
+    <mat-form-field>                
+        <input matInput placeholder="Nombre" formControlName="name" >
+    </mat-form-field>                        
+    <mat-form-field>                
+        <input matInput placeholder="Segundo Nombre" formControlName="second_name" >
+    </mat-form-field>                        
+    <mat-form-field>                
+        <input matInput placeholder="Apellidos" formControlName="last_name">
+    </mat-form-field>                        
+    <mat-form-field>                
+        <input matInput placeholder="Direccion" formControlName="address" >
+    </mat-form-field>                        
+    <mat-form-field>                
+        <input matInput placeholder="Telefono" formControlName="phone">
+    </mat-form-field>                        
+    <mat-form-field>                
+        <input matInput placeholder="Ciudad" formControlName="city">
+    </mat-form-field>
+    <br><button mat-button color="primary" progressStepNext [disabled]="formDriver.invalid" (click)="new_driver()">Crear Conductor</button>                    
+</div>

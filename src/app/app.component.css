@@ -1,0 +1,10 @@
+mat-toolbar{
+    display: flex;
+    justify-content: center;
+}
+
+mat-toolbar span{
+    margin-right: 50px;
+    color: #4253b6;
+}
+
