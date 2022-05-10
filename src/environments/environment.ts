@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  siteUrl: 'https://powerful-dusk-68137.herokuapp.com/index.php',
+  siteUrl: 'http://localhost:3000/',
+  //siteUrl: 'https://powerful-dusk-68137.herokuapp.com/index.php',
 };
 
 /*

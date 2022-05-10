@@ -24,13 +24,13 @@ import {MatInputModule} from '@angular/material/input';
 import {MatCheckboxModule} from '@angular/material/checkbox'; 
 import {MatDialogModule} from '@angular/material/dialog'; 
 import {MatTableModule} from '@angular/material/table';
+import {MatExpansionModule} from '@angular/material/expansion'; 
 
 
 // COMPONETS
 
 import { ListCarsComponent } from './componets/car/list-cars/list-cars.component';
 import { NewDriverComponent } from './componets/driver/new-driver/new-driver.component';
-import { AttachDriverComponent } from './componets/driver/attach-driver/attach-driver.component'; 
 import { ProgressComponent } from './componets/progress/progress.component'; 
 import { ProgressStepComponent } from './componets/progress/progress-step/progress-step.component'; 
 import { ProgressStepDirective } from './componets/progress/progress-step.directive'; 
@@ -42,8 +42,7 @@ import { ProgressStepDirective } from './componets/progress/progress-step.direct
     DriverComponent,
     CarComponent,    
     ListCarsComponent,
-    NewDriverComponent,    
-    AttachDriverComponent,
+    NewDriverComponent,        
     ProgressComponent,
     ProgressStepComponent,
     ProgressStepDirective,    
@@ -65,7 +64,8 @@ import { ProgressStepDirective } from './componets/progress/progress-step.direct
     MatCheckboxModule,
     MatDialogModule,
     HttpClientModule,
-    MatTableModule
+    MatTableModule,
+    MatExpansionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

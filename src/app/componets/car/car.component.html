@@ -35,7 +35,7 @@
             <h2>Informacion del Vehiculo</h2>            
             <mat-form-field>                
                 <input matInput placeholder="Placa" formControlName="license">
-            </mat-form-field>            
+            </mat-form-field>                        
             <mat-form-field>                
                 <input matInput placeholder="Marca" formControlName="brand">
             </mat-form-field>            
@@ -43,10 +43,48 @@
                 <mat-select formControlName="type_car" >
                     <mat-option value="1">Publico</mat-option>                
                     <mat-option value="2">Privado</mat-option>                
-                </mat-select>
+                </mat-select>            
             </mat-form-field>
-            <br><button mat-button color="primary" progressStepNext (click)="CrearVehiculo()">Crear</button>        
+            <mat-form-field>                
+                <input matInput placeholder="Color" formControlName="color">
+            </mat-form-field>
+            <br><button mat-button color="primary" progressStepNext [disabled]="formOwner.invalid">Siguiente Paso</button>                                                        
             <button mat-button color="accent" progressStepPrev >Volver</button>                                
         </div>
+    </app-progress-step>    
+    <app-progress-step>
+        <h2>Asocia un Conductor a este Vehiculo</h2>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Crear nuevo Conductor
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Crea un Conductor para este vehiculo
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>                   
+                  <app-new-driver (newDriver)="id_driver=$event" ></app-new-driver>             
+            </mat-expansion-panel>             
+        </mat-accordion>
+        <mat-accordion class="example-headers-align" multi>
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                      Asocia un  Conductor
+                    </mat-panel-title>
+                    <mat-panel-description>
+                      Asocia un Conductor que ya este en nuestra empresa
+                    </mat-panel-description>
+                  </mat-expansion-panel-header>
+                  <mat-form-field appearance="fill" id="inputDrivers">
+                    <mat-label>Conductores sin carro Asignado:</mat-label> 
+                    <mat-select name="carros sin conductor" [(ngModel)]="id_driver" >
+                        <mat-option *ngFor="let car of listdriverOutcar"  [value]="car.id" >{{car.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>           
+            </mat-expansion-panel>             
+        </mat-accordion>        
+        <br><button mat-button color="primary" progressStepNext (click)="CrearVehiculo()">Crear</button>        
     </app-progress-step>    
 </app-progress>

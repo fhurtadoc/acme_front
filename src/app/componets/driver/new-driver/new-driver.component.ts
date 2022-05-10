@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from '../../../services.service';
 
@@ -8,6 +8,8 @@ import { ServicesService } from '../../../services.service';
   styleUrls: ['./new-driver.component.css']
 })
 export class NewDriverComponent implements OnInit {
+  @Output() newDriver=new EventEmitter();
+
   formDriver=new FormGroup({
     id_card: new FormControl('', Validators.required),
     name: new FormControl('', Validators.required),
@@ -35,8 +37,7 @@ export class NewDriverComponent implements OnInit {
     this.servicesService.consultas_post(path, form).subscribe(
       res=>{
         console.log(res);                  
-          console.log(res);
-          
+          this.newDriver.emit(res.id);          
       },
     err=>{
       console.log(err);

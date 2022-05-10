@@ -4,6 +4,7 @@ import { ServicesService } from '../../../services.service';
 export interface carInfo {
   license: string;
   brand: string;
+  color: string;
   name: string;
   owner_name: string;
   owner_id: number;
@@ -11,6 +12,15 @@ export interface carInfo {
   driver_id: number;
 }
 
+export interface ownerInfo {
+  id:string; 
+  id_card :string;
+  name:string;
+  address:string;
+  phone:string;
+  city:string;
+  rol:string;
+}
 
 @Component({
   selector: 'app-list-cars',
@@ -19,14 +29,17 @@ export interface carInfo {
 })
 export class ListCarsComponent implements OnInit {
 
-  displayedColumns: string[] = ['license','brand','name','owner_name','owner_id','driver_name','driver_id'];
+  displayedColumns: string[] = ['license','brand','color', 'name','owner_name','driver_name'];
   dataSource :carInfo[];
+  displayedColumns_owners:string[] = ['id','id_card','name' ,'address' ,'phone' ,'city' ,'rol'];
+  dataSource_owners :ownerInfo[];
 
 
   constructor(private servicesService:ServicesService) { }
 
   ngOnInit(): void {
     this.list_cars();
+    this.list_owners();
   }
 
   list_cars(){
@@ -39,6 +52,19 @@ export class ListCarsComponent implements OnInit {
         console.log(err);
       }
     )
+  }
+
+  list_owners(){
+    var path='?action=list_owner';
+    this.servicesService.consultas_get(path).subscribe(
+      res=>{
+          console.log(res);
+          this.dataSource_owners=res;
+      },
+      err=>{
+        console.log(err);
+      }
+    )  
   }
 
 }

@@ -3,11 +3,13 @@ h2{
     margin-top: 2%;
 }
 
-.continer_tab{
+.continer_tab{    
     display: flex;
+    flex-flow: column;
     justify-content: center;
-    width: 100%;
+    width: 80%;
     margin-top: 5%;
+    margin-left: 5%;    
 }
 
 .continer_tab table{

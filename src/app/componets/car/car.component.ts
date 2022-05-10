@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ServicesService } from '../../services.service';
+import {MatAccordion} from '@angular/material/expansion';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-car',
@@ -8,8 +10,11 @@ import { ServicesService } from '../../services.service';
   styleUrls: ['./car.component.css']
 })
 export class CarComponent implements OnInit {
+  @ViewChild(MatAccordion) accordion: MatAccordion;
 
   id_Owner;
+  id_driver=0;
+  listdriverOutcar=[];
 
   formOwner=new FormGroup({
     id_card: new FormControl('', Validators.required),
@@ -24,13 +29,18 @@ export class CarComponent implements OnInit {
   formCar=new FormGroup({
     license:new FormControl('', Validators.required),
     brand:new FormControl('', Validators.required),
-    type_car:new FormControl('', Validators.required)    
+    type_car:new FormControl('', Validators.required),    
+    color:new FormControl('', Validators.required)    
     
   })
 
-  constructor(private servicesService:ServicesService) { }
+  constructor(private servicesService:ServicesService,
+    private route: ActivatedRoute,
+    private router: Router,
+    ) { }
 
   ngOnInit(): void {
+    this.list_driverOutcar();
   }
 
   CrearVehiculo(){
@@ -51,8 +61,7 @@ export class CarComponent implements OnInit {
     this.servicesService.consultas_post(path, form).subscribe(
       res=>{
           console.log(res);          
-          if(res.http===200){            
-            res.id;
+          if(res.http===200){                        
             this.create_car(res.id);
           }
       },
@@ -68,16 +77,54 @@ export class CarComponent implements OnInit {
       formOwner.append("license", this.formCar.value.license);    
       formOwner.append("brand", this.formCar.value.brand);    
       formOwner.append("type_car", this.formCar.value.type_car);    
+      formOwner.append("color", this.formCar.value.color);          
       formOwner.append("owner", id);          
       var path='?action=create_car';      
       this.servicesService.consultas_post(path, formOwner).subscribe(
         res=>{
           console.log(res);
+          var id_car=res.id
+          var id_user=this.id_driver
+          this.asocDriver(id_car, id_user);
         },
         err=>{
           console.log(err);
         }
       )
     }
+  }
+
+  asocDriver(id_car, id_user){
+    console.log(id_car, id_user );
+    var path='?action=assign_car';
+    var asingcarForm=new FormData();
+    asingcarForm.append('id_car', id_car);
+    asingcarForm.append('id_user',id_user );
+    this.servicesService.consultas_post(path, asingcarForm ).subscribe(
+      res=>{
+        if(res){
+          let link = ['/'];
+          this.router.navigate(link);
+        }
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+
+    
+  }
+
+  list_driverOutcar(){
+    var path='?action=list_drivers_outcars'
+    this.servicesService.consultas_get(path).subscribe(
+      res=>{
+        this.listdriverOutcar=res
+      },
+      err=>{
+        console.log(err);
+      }
+    )
+
   }
 }

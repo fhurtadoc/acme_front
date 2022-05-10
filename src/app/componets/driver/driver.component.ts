@@ -11,9 +11,7 @@ export class DriverComponent implements OnInit {
   dataSource = [];
   displayedColumns: string[] = [
   "id",
-  "name",
-  "second_name",
-  "last_name",
+  "name",  
   "address",
   "city",
   "id_card",
